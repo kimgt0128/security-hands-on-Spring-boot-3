@@ -1,4 +1,4 @@
-package com.wondrous.security;
+package com.wondrous.test_security;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
