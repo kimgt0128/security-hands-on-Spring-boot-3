@@ -27,7 +27,7 @@ public class JoinService {
 
         //User 데이터 입력
         Member member = request.toEntity();
-        member.setRole("ROLE_USER");
+        member.setRole("ROLE_ADMIN");
 
         //비밀 번호 암호화
         member.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
