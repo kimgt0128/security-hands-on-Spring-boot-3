@@ -4,10 +4,12 @@ import com.wondrous.test_security.dto.JoinRequestDto;
 import com.wondrous.test_security.enrity.Member;
 import com.wondrous.test_security.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
+@Slf4j
 
 @Service
 public class JoinService {
@@ -28,8 +30,9 @@ public class JoinService {
         member.setRole("ROLE_USER");
 
         //비밀 번호 암호화
-        member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
+        member.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
 
+        log.info("JoinService.join - memberName: {}, password: {}", member.getMemberName(), member.getPassword());
 
         //유저 정보 저장
         memberRepository.save(member);
