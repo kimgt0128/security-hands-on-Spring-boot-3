@@ -1,0 +1,43 @@
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force-response: 'true'
+
+
+spring:
+  application:
+    name: security
+
+
+
+  jpa:
+    properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL8Dialect
+          format_sql: true
+          highlight_sql: true
+          use_sql_comments: true
+
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+
+
+
+
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/member?useSSL=false&useUnicode=true&character_set_server=utf8mb4&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    username: root
+    password: "0000"
+
+logging:
+  level:
+    root: info
+    org.hibernate.sql: debug
+    org.hibernate.type.descriptor.sql: debug
