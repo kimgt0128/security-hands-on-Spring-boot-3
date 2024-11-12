@@ -12,7 +12,7 @@ public class JoinRequestDto {
 
     public Member toEntity() {
         return Member.builder()
-                .userName(memberName)
+                .memberName(memberName)
                 .build();
     }
 }

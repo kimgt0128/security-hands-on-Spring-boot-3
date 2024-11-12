@@ -28,6 +28,8 @@ spring:
 
 
 
+
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/member?useSSL=false&useUnicode=true&character_set_server=utf8mb4&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
