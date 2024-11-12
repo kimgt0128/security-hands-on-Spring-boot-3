@@ -31,6 +31,15 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .loginProcessingUrl("/loginProc")
                         .permitAll()
+                )
+                .sessionManagement((auth) -> auth
+                        .maximumSessions(3)
+                        .maxSessionsPreventsLogin(true)
+
+                )
+                //세션 고정 보호 설정
+                .sessionManagement((auth) -> auth
+                        .sessionFixation().changeSessionId()
                 );
         return http.build();
     }
