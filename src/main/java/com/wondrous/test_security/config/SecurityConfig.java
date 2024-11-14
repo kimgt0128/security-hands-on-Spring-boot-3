@@ -25,10 +25,27 @@ public class SecurityConfig {
 
     @Bean
     public RoleHierarchy roleHierarchy() {
-        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        roleHierarchy.setHierarchy("ROLE_ADMIN > ROLE_MANAGER\n" +
-                "ROLE_MANAGER > ROLE_USER");
-        return roleHierarchy;
+
+        /*****6.3.x 버전 이전 RoleHierarchy 설정**********************
+         ----------------------------------------------------------
+         RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+         roleHierarchy.setHierarchy("ROLE_ADMIN > ROLE_MANAGER\n" +
+                 "ROLE_MANAGER > ROLE_USER");
+         return roleHierarchy;
+         ----------------------------------------------------------
+         6.3.x 이후 버전(ROLE_접두사 수동)
+         ----------------------------------------------------------
+         return RoleHierarchyImpl.fromHierarchy("""
+                 ROLE_ADMIN > ROLE_MANAGER
+                 ROLE_MANAGER > ROME_USER
+                 """);
+         -----------------------------------------------------------
+         */
+        // ROLE 접두사 자동생성
+        return RoleHierarchyImpl.withDefaultRolePrefix()
+                .role("ADMIN").implies("MANAGER")
+                .role("MANAGER").implies("USER")
+                .build();
     }
 
     @Bean
