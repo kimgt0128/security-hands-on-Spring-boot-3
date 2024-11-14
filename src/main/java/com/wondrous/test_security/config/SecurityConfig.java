@@ -20,7 +20,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable) //사이트 위변조 방지 설정 해제(개발 환경에서만)
+                /**
+                 * 사이트 위변조 방지 설정 해제
+                 * 개발 환경 or JWT 구현 방식에서만 해제
+                 * 아무 설정도 없으면 enable이 기본 설정
+                 * .csrf(AbstractHttpConfigurer::disable)
+                 */
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/", "/login", "/loginProc", "/join", "/joinProc").permitAll() // 로그인 없이 접근 가능하도록 설정
                         .requestMatchers("/main", "/user/**").hasAnyRole("ADMIN", "MANAGER", "USER")
@@ -41,7 +46,10 @@ public class SecurityConfig {
                 //세션 고정 보호 설정
                 .sessionManagement((auth) -> auth
                         .sessionFixation().changeSessionId()
-                );
+                )
+                //로그아웃 엔드포인트 설정
+                .logout((auth) -> auth.logoutUrl("/logout")
+                        .logoutSuccessUrl("/"));
         return http.build();
     }
 }

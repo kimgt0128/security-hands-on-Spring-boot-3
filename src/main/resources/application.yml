@@ -11,7 +11,9 @@ spring:
   application:
     name: security
 
-
+  mustache:
+    servlet:
+      expose-request-attributes: true
 
   jpa:
     properties:
