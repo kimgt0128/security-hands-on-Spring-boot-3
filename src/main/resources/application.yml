@@ -3,13 +3,17 @@ server:
     encoding:
       charset: UTF-8
       force-response: 'true'
+    session:
+      timeout: 10m
 
 
 spring:
   application:
     name: security
 
-
+  mustache:
+    servlet:
+      expose-request-attributes: true
 
   jpa:
     properties:
